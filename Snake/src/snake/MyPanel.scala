@@ -73,6 +73,24 @@ class MyPanel extends Panel{
    last_y_move = y_move
    
     super.paintComponent(g)
+    
+      //Draw the snake
+    g.setColor(Color.green)
+    
+    for (i <- 0 to 29){
+      //for (j <- 0 to 29 if board.snake.body.contains((i,j))){
+      for (j <- 0 to 29 if board.snakeCell((i,j))){
+        g.fillRect(i*10, j*10, 10, 10)
+        
+        //draw the outline of each snake cell
+        g.setColor(Color.black)
+        g.drawRect(i*10, j*10, 10, 10)
+        g.setColor(Color.green)
+      }
+    }
+   
+   //Draw the board
+    
     g.setColor(Color.red)
     g.drawString(score, 20, 325)
     g.drawString("Press 'R' to restart", 150, 325)
@@ -91,24 +109,14 @@ class MyPanel extends Panel{
       }
     }
     
-    g.setColor(Color.green)
     
-    for (i <- 0 to 29){
-      for (j <- 0 to 29 if board.snake.body.contains((i,j))){
-        g.fillRect(i*10, j*10, 10, 10)
-        
-        //draw the outline of each snake cell
-        g.setColor(Color.black)
-        g.drawRect(i*10, j*10, 10, 10)
-        g.setColor(Color.green)
-      }
-    }
+  
     
     
     //val (x_move, y_move) = player.moveDecision()
 //    board = board.updateBoard(x_move, y_move)
     //player = player.updatePlayer(board)
-    Thread.sleep(200)
+    Thread.sleep(275)
     repaint
   }
 }

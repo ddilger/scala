@@ -3,10 +3,19 @@ package snake
 /**
  * @author Daniel
  */
+
+//companion object for Snake
+object Snake{
+  val init_x = 1
+  val init_y = 1
+}
+
+//The "tail" variable marks where a tail will be made
 class Snake(val body: List[(Int, Int)], x_dir: Int, y_dir: Int, val tail_x: Int, val tail_y: Int){
+ //import Snake._ why can't I import the companion object?
   def this()
   {
-    this(List((0, 0)), 30, 0, 0, 0)
+    this(List((Snake.init_x, Snake.init_y)), 30, 0, 0, 0)
   }
   def head(): (Int, Int) = {
     body(0)
@@ -21,6 +30,7 @@ class Snake(val body: List[(Int, Int)], x_dir: Int, y_dir: Int, val tail_x: Int,
       body(1)
     }
   }
+  //This function needs to be removed during refactoring
   def goingBackwards(): Boolean = {
     false
   }
