@@ -1,4 +1,4 @@
-package test
+package logiclibrary
 
 /**
  * @author Daniel
@@ -8,7 +8,7 @@ class Literal(val truth: Boolean = true, val name: String) {
     this(true, name)
   }
   def copy():Literal = {
-    new Literal(truth, name)
+    new Literal(truth, new String(name))
   }
   def negation(): Literal = {
     new Literal(!truth, name)

@@ -1,4 +1,5 @@
-package test
+package logiclibrary
+
 
 /**
  * @author Daniel
