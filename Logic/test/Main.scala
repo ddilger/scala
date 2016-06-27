@@ -41,6 +41,7 @@ object Main {
       null
     }
   }
+  /*
   def res(f: Formula): Formula = {
     val clause_list = f.clauses.toList
     if(clause_list.length < 2){
@@ -53,7 +54,7 @@ object Main {
         val c2 = clause_list(1)
         val r =  resolvent(c1, c2)
         val new_clauses = if(r != null) {f.clauses union Set(r)} else {f.clauses}
-        new Formula(new_clauses)
+        new Formula(new_clauses)*/
         /*
         val new_clauses = f.clauses union Set(r)
         if (new_clauses != f.clauses){
@@ -64,8 +65,29 @@ object Main {
         }
         * 
         */
+  /*
     }
+  } */
+ def h1(f: Formula): List[(Clause, Clause)] = {
+     f.clauses.flatMap(x => f.clauses.map((x, _))).filter(x => x._1 != x._2).toList
   }
+  def h2(clause_pairs: List[(Clause, Clause)]):List[Set[Clause]] = {
+    clause_pairs.map(x => all_resolvents(x._1, x._2))
+  } 
+  def res(f: Formula):Formula = {
+   //def res(f: Formula):List[Set[Clause]] = {
+  //def res(f: Formula):List[(Clause, Clause)] = {
+  //Produce a list of (c1,c2) tuples for the formula
+     val clause_pairs : List[(Clause, Clause)] = f.clauses.flatMap(x => f.clauses.map((x, _))).filter(x => x._1 != x._2).toList
+  //Filter out repeated pairs. For example (c2, c1) is a repeat of (c1, c2)
+  //Map this list into list of sets produced by passing a (c1,c2) pair to all_resolvents()
+     val r = clause_pairs.map(x => all_resolvents(x._1, x._2))
+  //Fold this list of sets into a single set of sets, return this within a formula
+     val s = r.foldLeft(r(0)){((m: Set[Clause],n: Set[Clause]) => m ++ n)}
+     val new_f = new Formula(s)
+     new_f
+  }
+  
   //p. 35 of Logic for Computer Scientists
   def satisfiable(f: Formula): Boolean = {
     var F = f.copy
@@ -103,8 +125,8 @@ object Main {
     val not_D = new Literal(false, "D")
     val E = new Literal("E")
     val not_E = new Literal(false, "E")
-    val clause_1 = new Clause(Set(A, B, D.negation()))
-    val clause_2 = new Clause(Set(B, D, A.negation()))
+    val clause_1 = new Clause(Set(A, B, D.negation(), C.negation()))
+    val clause_2 = new Clause(Set(B, D, A.negation(), C))
     /*println(clause_1.equals(clause_2)) */
     
     /* val all = all_resolvents(clause_1, clause_2)
@@ -128,15 +150,21 @@ object Main {
     */
     
     
-    val f1 = new Formula(Set(clause_1, clause_2))
-    println(satisfiable(f1))
+   // val f1 = new Formula(Set(clause_1, clause_2))
+   // println(satisfiable(f1))
+   // println("done")
+    //println(all_resolvents(clause_1, clause_2))
     
-    
-    /*
+  //  /*
     val clause_3 = new Clause(Set(A, B)) 
     val f1 = new Formula(Set(clause_1, clause_3))
+    println(h1(f1))
+    println(h2(h1(f1)))
+    println(res(f1))
     println(satisfiable(f1))
-    * 
-    */
+     
+ //   */
+  //  val f1 = new Formula(Set(clause_1, clause_2))
+  //  println(res(f1))
   }
 }

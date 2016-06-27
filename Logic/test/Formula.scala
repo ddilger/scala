@@ -8,7 +8,8 @@ class Formula(val clauses: Set[Clause]) {
     this(Set(new Clause())) //Formula consists only of the empty set
   }
   def containsEmpty():Boolean = {
-    clauses.contains(new EmptyClaus) //Can EmptyClaus be an object rather than a class?
+    //Can EmptyClaus be an object rather than a class?
+    clauses.contains(new EmptyClaus) || clauses.isEmpty
   }
   def copy():Formula = {
     val clauses_copy = for {c <- clauses} yield c.copy
