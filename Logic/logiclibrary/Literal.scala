@@ -5,9 +5,18 @@ package logiclibrary
  */
 
 //Literal and variable should both inherit from abstract class "Term"
-class Literal(val truth: Boolean = true, val name: String) {
+class Literal(val truth: Boolean = true, val name: String) extends Term(name: String) {
   def this(name: String) = {
     this(true, name)
+  }
+  def occursIn(t:Term):Boolean = {
+    if(t.isInstanceOf[Variable]){
+      false //well, it might be true
+    }
+    else{
+      //Only true if the name for both is the same
+      false
+    }
   }
   def copy():Literal = {
     new Literal(truth, new String(name))

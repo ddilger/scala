@@ -4,8 +4,8 @@ package logiclibrary
  * @author Daniel
  */
 
-//Literl and variable should both inherit from abstract class "Term"
-class Variable (override val name: String) 
+//A type of Literal where the name is not yet known
+class Variable (name: String) 
   extends Literal(name: String) {
-    
+  
 }
