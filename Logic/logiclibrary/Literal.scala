@@ -3,6 +3,8 @@ package logiclibrary
 /**
  * @author Daniel
  */
+
+//Literal and variable should both inherit from abstract class "Term"
 class Literal(val truth: Boolean = true, val name: String) {
   def this(name: String) = {
     this(true, name)

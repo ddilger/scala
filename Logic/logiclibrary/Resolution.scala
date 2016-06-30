@@ -63,19 +63,20 @@ object Resolution {
     var G = F.copy
     var i = 0 //Max number of iterations. Purely for testing purposes
     do{
-    //  G = F.copy
+      G = F.copy
       F = res(F)
       i = i+1
     }
-    while (!F.containsEmpty && !F.equals(G) && i < 3)
+    //while (!F.containsEmpty && !F.equals(G) && i < 2)
+    while (!F.containsEmpty && !F.equals(G))
     if(F.containsEmpty) //contradiction encountered; unsatisfiable
     {
-      println(F)
+   //   println(F)
       false
     }
     else{ //F must equal G
-      println(F)
-      println(G)
+       println(F)
+       println(G)
       true
     }
   }
