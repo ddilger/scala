@@ -9,7 +9,9 @@ object GameManager {
   val board_dimension = 400
   val square_width = (board_dimension / 8).toInt
   
-  var current_game = new CheckersGame()
+ // var current_game = new CheckersGame()
+  var current_game = GameLoader.loadGame("")
+  println(current_game.board)
   var focus_on = false
   //I don't like the use of an "invalid tuple" here...
   var focus = (-1,-1) //no focus anywhere on board (value at the start of each turn)

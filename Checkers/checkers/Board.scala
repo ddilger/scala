@@ -6,6 +6,9 @@ import ailibrary._
  * @author Daniel
  */
 class Board(val cell_grid: Array[Array[CheckersPiece]], val last_move: Move) extends GameNode{
+  def this(cell_grid: Array[Array[CheckersPiece]]){
+    this(cell_grid, new Move())
+  }
   def this(){
      this(for {
       i <- Array.range(0,  8)

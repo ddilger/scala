@@ -4,5 +4,7 @@ package test
  * @author Daniel
  */
 object Main {
-  println("Hello world")
+    def main(args: Array[String]): Unit = {
+      //LoaderTest.test0
+    }
 }
